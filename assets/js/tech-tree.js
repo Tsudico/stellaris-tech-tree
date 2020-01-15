@@ -22,6 +22,7 @@ var config = {
             init_tooltips();
 
             var area = tree.nodeHTMLclass.replace('tech', '').replace(' ', '');
+            init_startingNodes(area);
             init_nodestatus(area);
 
             const observer = lozad();
@@ -264,6 +265,23 @@ function getInitNode(node, name) {
     return undefined;
 }
 
+function init_startingNodes(area) {
+    $('#tech-tree-' + area).find('p.node-title:contains(\\(Starting\\))').parent().each(function () {
+        // Get the nodeDB item
+        var inode = getNodeDBNode(area, $(this).attr('id'));
+
+        // Update the connectors for starting nodes
+        if(inode == null) return;
+
+        var myConnector = $(inode.connector).get(0);
+        if(myConnector !== undefined) $(myConnector).addClass("active");
+
+        for(const child of inode.children) {
+            $(charts[area].tree.nodeDB.db[child].connector[0]).addClass(area);
+        }
+    });
+}
+
 // IndexedDB solution (Multiple research sets saved)
 var offlineDB;
 
@@ -314,11 +332,17 @@ function findLists() {
                 if($('#research_selection').val() && $.trim($('#research_selection').val()).length !== 0) {
                     saveListToIndexedDB( $('#research_selection').val() );
                 }
+                else {
+                    $('#research_selection').tooltipster('open');
+                }
             })
             $('#research_load').on('click', function(event) {
                 event.preventDefault();
                 if($('#research_selection').val() && $.trim($('#research_selection').val()).length !== 0) {
                     loadListFromIndexedDB( $('#research_selection').val() );
+                }
+                else {
+                    $('#research_selection').tooltipster('open');
                 }
             })
             $('#research_remove').on('click', function(event) {
@@ -326,10 +350,27 @@ function findLists() {
                 if($('#research_selection').val() && $.trim($('#research_selection').val()).length !== 0) {
                     removeListFromIndexedDB( $('#research_selection').val() );
                 }
+                else {
+                    $('#research_selection').tooltipster('open');
+                }
             })
             $('.research').removeClass('hide');
+            initErrorTooltip();
         }
     };
+}
+
+function initErrorTooltip() {
+    $('#research_selection').tooltipster({
+        trigger: 'click',
+        functionInit: function(instance, helper) {
+            content = "Please enter a name.";
+            instance.content($('<div style="text-align:center">' + content + '</div>'));
+        },
+        functionReady: function(instance, helper) {
+            helper.origin.focus();
+        }
+    });
 }
 
 function saveListToIndexedDB(name) {
