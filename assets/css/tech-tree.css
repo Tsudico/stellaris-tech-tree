@@ -468,16 +468,19 @@ li.float-RightElement a {
 path.society {
     stroke: #5ACA9C;
     stroke-width: 2;
+    marker-end: url(#society-path-arrow);
 }
 
 path.engineering {
     stroke: #E29C43;
     stroke-width: 2;
+    marker-end: url(#engineering-path-arrow);
 }
 
 path.physics {
     stroke: #4396E2;
     stroke-width: 2;
+    marker-end: url(#physics-path-arrow);
 }
 
 .node.active.society {

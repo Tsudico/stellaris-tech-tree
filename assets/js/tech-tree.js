@@ -25,6 +25,8 @@ var config = {
             init_startingNodes(area);
             init_nodestatus(area);
 
+            addArrowsForPaths(area);
+
             const observer = lozad();
             observer.observe();
 		}
@@ -280,6 +282,40 @@ function init_startingNodes(area) {
             $(charts[area].tree.nodeDB.db[child].connector[0]).addClass(area);
         }
     });
+}
+
+function addArrowsForPaths(area) {
+    // Add svg DOM elements for arrows
+    var $svg = $('#tech-tree-' + area).find('svg defs');
+    $svg.append(makeSVG('path', {
+        id: area + '-arrow',
+        fill: $('svg .' + area).css('stroke'),
+        "stroke-linecap":'round',
+        d: 'M5,0 0,2.5 5,5z'
+    }));
+    $svg.append(makeSVG('marker', {
+        id: area + '-path-arrow',
+        orient: 'auto',
+        markerHeight: 5,
+        markerWidth: 5,
+        refY: 2.5,
+        refX: 4
+    }));
+    $svg.find('marker').append(makeSVG('use', {
+        "href": '#' + area + '-arrow',
+        "stroke-width": 1,
+        stroke: 'none',
+        transform: 'rotate(180 2.5 2.5) scale(1,1)'
+    }));
+}
+
+// See https://stackoverflow.com/a/3642265
+function makeSVG(tag, attrs) {
+    var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (var k in attrs) {
+        el.setAttribute(k, attrs[k]);
+    }
+    return el;
 }
 
 // IndexedDB solution (Multiple research sets saved)
