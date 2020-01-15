@@ -42,6 +42,7 @@ body {
 }
 
 .tech {
+    position: relative;
     padding: 2px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -126,10 +127,10 @@ body {
 .tech div.node-status {
     border: 1px solid #333;
     margin: 1px;
-    position: inherit;
+    position: absolute;
     float: right;
-    bottom: 0;
-    right: 0;
+    bottom: 1px;
+    right: 1px;
     height: 21px;
     width: 21px;
 }
@@ -344,11 +345,6 @@ div.fixed {
     float:left;
     margin: 10px 10px 10px 10px;
     cursor: pointer;
-}
-
-.anomaly div.node-status {
-    margin-right: -1px;
-    margin-top: -8px;]
 }
 
 div.fixed div {
