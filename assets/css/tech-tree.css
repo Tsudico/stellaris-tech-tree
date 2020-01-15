@@ -42,6 +42,7 @@ body {
 }
 
 .tech {
+    position: relative;
     padding: 2px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -124,11 +125,11 @@ body {
 }
 
 .tech div.node-status {
-    background-image: url("../icons/no.png");
-    position: inherit;
-    float: right;
-    bottom: 0;
-    right: 0;
+    border: 1px solid #333;
+    margin: 1px;
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
     height: 21px;
     width: 21px;
 }
@@ -195,11 +196,12 @@ div.extra-data {
 .tooltipster-content span.node-status {
     display: inline-block;
     background-image: url("../icons/no.png");
+    background-repeat: no-repeat;
     background-size: 13.5px;
     height: 13.5px;
-    width: 13.5px;
-    padding-right: 2px;
+    padding-left: 15px;
     vertical-align: middle;
+    background-position-y: 2px;
 }
 .tooltipster-content span.node-status.active {
     background-image: url("../icons/yes.png");
@@ -343,11 +345,6 @@ div.fixed {
     cursor: pointer;
 }
 
-.anomaly div.node-status {
-    margin-right: -2px;
-    margin-top: -5px;]
-}
-
 div.fixed div {
     margin: 3px 3px 3px 4px !important;
 }
@@ -460,4 +457,47 @@ li.float-RightElement a {
     border: 1px solid #2F6458;
     padding: 0px 2px;
     text-align: center;
+}
+
+path.society {
+    stroke: #5ACA9C;
+    stroke-width: 2;
+    marker-end: url(#society-path-arrow);
+}
+
+path.engineering {
+    stroke: #E29C43;
+    stroke-width: 2;
+    marker-end: url(#engineering-path-arrow);
+}
+
+path.physics {
+    stroke: #4396E2;
+    stroke-width: 2;
+    marker-end: url(#physics-path-arrow);
+}
+
+.node.active.society {
+    background-color: #173327;
+}
+
+.node.active.physics {
+    background-color: #0F2233;
+}
+
+.node.active.engineering {
+    background-color: #33230F;
+}
+
+
+.node.starter.society {
+    background-color: #173327;
+}
+
+.node.starter.physics {
+    background-color: #0F2233;
+}
+
+.node.starter.engineering {
+    background-color: #33230F;
 }
