@@ -80,12 +80,25 @@
             bottom: 3px;
             right:3px;
         }
+
+        .jobs {
+            position: relative;
+            float: left;
+            margin-top: 25px;
+        }
+
+        .jobs h1 {
+            margin-left: 15px;
+            font-family: Arimo, sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+        }
     </style>
 
     <script src="../assets/vendor/jsrender.min.js"></script>
 
     <script id="node-template" type="text/x-jsrender">
-        <div class="node">
+        <div class="node" id="{{:key}}">
             <div class="picture" style="background-image:url('assets/pc_arctic_2.png');float:left;margin-right:10px;">
                 <div class="picture" style="background-image:url('assets/buildings/{{:building}}.png');">
                     <div class="picture ratling">
@@ -108,12 +121,52 @@
     <script>
         $(document).ready(function() {
             $.getJSON('jobs.json', function(jsonData) {
+                var categories = ['worker', 'simple_drone', 'specialist', 'complex_drone', 'ruler'];
+                jsonData.sort(function(a, b) {
+                    if(categories.findIndex(c => c == a.category) != categories.findIndex(c => c == b.category)) {
+                        if(categories.findIndex(c => c == a.category) < categories.findIndex(c => c == b.category)) {
+                            return 1;
+                        }
+                        else {
+                            return -1;
+                        }
+                    }
+                    else {
+                        return (''+a.name).localeCompare(b.name);
+                    }
+                });
+
                 $(jsonData).each(function(e, item) {
                     var tmpl = $.templates("#node-template");
                     var html = tmpl.render(item);
                     html = html.replace(new RegExp(/£(\w+)£/,'g'), '<img class="icon" src="../assets/icons/$1.png" />');
 
-                    $(".job-tree").append(html);
+                    var species = '';
+                    if( 'hunter_gatherer' == item.key || 'ratling_scavenger' == item.key || 'pre_sapient' == item.key
+                    || item.key.startsWith('primitive') || (item.building && -1 < item.building.indexOf('primitive'))) {
+                        species = '.primitive';
+                    }
+                    else if( -1 < item.category.indexOf('drone') || 'organic_battery' == item.key || 'bio_trophy' == item.key) {
+                        species = '.gestalt';
+                    }
+                    else if(item.key.startsWith('fe_')) {
+                        species = '.precursor';
+                    }
+                    else {
+                        species = '.default';
+                    }
+                    var duplicates = $(species+' .p-title:contains('+item.name+')').filter(function() {
+                        var duplicate = false;
+                        if(RegExp('^'+item.name+'$','i').test($(this).text().trim())) {
+                            duplicate = true;
+                        } else if($(this).parent().find('.p-text').text().trim() == item.description.trim()){
+                            duplicate = true;
+                        }
+                        return duplicate;
+                    }).parent();
+                    if( 0 >= duplicates.length) {
+                        $(species+" .job-tree").append(html);
+                    }
                 })
             });
         });
@@ -132,7 +185,22 @@
             </a>
         </li>
     </ul>
-    <div class="job-tree" style="margin-top:50px"></div>
+    <div class="default jobs" style="margin-top:50px;">
+        <h1>Regular Jobs</h1>
+        <div class="job-tree"></div>
+    </div>
+    <div class="gestalt jobs">
+        <h1>Gestalt Jobs</h1>
+        <div class="job-tree"></div>
+    </div>
+    <div class="primitive jobs">
+        <h1>Primitive Jobs</h1>
+        <div class="job-tree"></div>
+    </div>
+    <div class="precursor jobs">
+        <h1>Fallen Empire Jobs</h1>
+        <div class="job-tree"></div>
+    </div>
 
 </body>
 </html>
