@@ -39,15 +39,16 @@ function init_tooltips() {
         minWidth: 300,
         trigger: 'click',
         maxWidth: 512,
+        interactive: true,
         functionInit: function(instance, helper){
             var content = $(helper.origin).find('.extra-data');
             $(content).find('img').each(function(img, el) {
                 $(el).attr('src',$(el).attr('data-src'));
 
-                var tech = $(el)[0].classList[$(el)[0].classList.length-1];
+                var tech = el.classList[el.classList.length-1];
                 if(!$('#' + tech).hasClass('anomaly')) {
                     var parent = $('#' + tech)[0];
-                    if(parent !== undefined && parent.classList.length > 1)
+                    if(parent && 1 < parent.classList.length)
                     $(el).addClass(parent.classList[2]);
                 }
             });
@@ -65,6 +66,23 @@ function init_tooltips() {
                     $(this).addClass('active');
                 } else {
                     $(this).removeClass('active');
+                }
+            });
+            $(helper.tooltip).find('img').each(function(img, el) {
+                var parent = $('#' + el.classList[1])[0];
+                if(parent) {
+                    if(3 > el.classList.length && 1 < parent.classList.length) {
+                        $(el).addClass(parent.classList[2]);
+                        $(helper.origin).find('img.'+el.classList[2]).addClass(parent.classList[2]);
+                    }
+                    $(el).on('click', function() {
+                        if($(parent).is(':hidden')) {
+                            $('.float-All a').trigger("click");
+                        }
+                        $(helper.origin).tooltipster('close');
+                        parent.scrollIntoView({behavior: "smooth", block: "center"});
+                        $(parent).tooltipster('open');
+                    })
                 }
             });
         }
@@ -97,6 +115,14 @@ function setup(tech) {
 
 
 $(document).ready(function() {
+    // Add converter for Stellaris Wiki encoding
+    $.views.converters({
+        search: function(val) {
+            if(val)
+            return val.replace(/ /g,"+");
+        }
+    });
+
     load_tree();
 });
 
