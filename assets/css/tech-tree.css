@@ -29,6 +29,74 @@ body {
     border-radius: unset;
 }
 
+.tooltipster-sidetip .tooltipster-arrow-border.tooltipster-arrow-border {
+    border: 15px solid transparent;
+}
+
+.tooltipster-sidetip .tooltipster-arrow-background.tooltipster-arrow-background {
+    border: 15px solid transparent;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow.tooltipster-arrow {
+    height: 30px;
+    width: 30px;
+    margin-left: -15px;
+    top: -10px;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-border.tooltipster-arrow-border {
+    border-bottom-color: #327866;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-background.tooltipster-arrow-background {
+    border-bottom-color: #000;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow.tooltipster-arrow {
+    height: 30px;
+    width: 15px;
+    margin-top: -15px;
+    right: -5px;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-border.tooltipster-arrow-border {
+    border-left-color: #327866;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-background.tooltipster-arrow-background {
+    border-left-color: #000;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow.tooltipster-arrow {
+    height: 30px;
+    width: 30px;
+    margin-top: -15px;
+    left: -10px;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-border.tooltipster-arrow-border {
+    border-right-color: #327866;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-background.tooltipster-arrow-background {
+    border-right-color: #000;
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow.tooltipster-arrow {
+    height: 15px;
+    width: 30px;
+    margin-left: -15px;
+    bottom: -5px;
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-border.tooltipster-arrow-border {
+    border-top-color: #327866;
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-background.tooltipster-arrow-background {
+    border-top-color: #000;
+}
+
 
 .extra-data {
     display:none;
