@@ -181,6 +181,11 @@
                 });
 
                 $('.p-desc img').each(function(index, img) {
+                    if($(img).prop('title').indexOf('produces_mult') !== -1) {
+                        var title = $(img).prop('title');
+                        title = title.replace('jobs_', '').replace('produces_mult', 'production_multiplier');
+                        $(img).prop('title', title);
+                    }
                     $(img).prop('title', $.views.converters.capitalize($(img).prop('title')));
                 });
             });
