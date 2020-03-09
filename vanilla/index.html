@@ -40,34 +40,37 @@
     </p>
     <p class="node-desc" style="color:yellow">
     {{if is_gestalt === true}}
-      <img src="../assets/icons/yes.png"/><img src="../assets/icons/ethic_gestalt_consciousness.png" height="21" width="21"/>
+      <img src="../assets/icons/yes.png"/><img src="../assets/icons/ethic_gestalt_consciousness.png" height="21" width="21" title="Gestalt"/>
     {{/if}}
     {{if is_gestalt === false}}
-      <img src="../assets/icons/no.png"/><img src="../assets/icons/ethic_gestalt_consciousness.png" height="21" width="21"/>
+      <img src="../assets/icons/no.png"/><img src="../assets/icons/ethic_gestalt_consciousness.png" height="21" width="21" title="Gestalt"/>
     {{/if}}
     {{if is_machine_empire === true}}
-      <img src="../assets/icons/yes.png"/><img src="../assets/icons/auth_machine_intelligence.png" height="21" width="21"/>
+      <img src="../assets/icons/yes.png"/><img src="../assets/icons/auth_machine_intelligence.png" height="21" width="21" title="Machine Intelligence"/>
     {{/if}}
     {{if is_machine_empire === false}}
-      <img src="../assets/icons/no.png"/><img src="../assets/icons/auth_machine_intelligence.png" height="21" width="21"/>
+      <img src="../assets/icons/no.png"/><img src="../assets/icons/auth_machine_intelligence.png" height="21" width="21" title="Machine Intelligence"/>
       {{if is_drive_assimilator === true}}
-      <img src="../assets/icons/yes.png"/><img src="../assets/icons/civic_machine_assimilator.png" height="21" width="21"/>
+      <img src="../assets/icons/yes.png"/><img src="../assets/icons/civic_machine_assimilator.png" height="21" width="21" title="Driven Assimilator"/>
       {{/if}}
       {{if is_rogue_servitor === true}}
-      <img src="../assets/icons/yes.png"/><img src="../assets/icons/civic_machine_servitor.png" height="21" width="21"/>
+      <img src="../assets/icons/yes.png"/><img src="../assets/icons/civic_machine_servitor.png" height="21" width="21" title="Rogue Servitor"/>
       {{/if}}
     {{/if}}
     {{if is_hive_empire === true}}
-      <img src="../assets/icons/yes.png"/><img src="../assets/icons/auth_hive_mind.png" height="21" width="21"/>
+      <img src="../assets/icons/yes.png"/><img src="../assets/icons/auth_hive_mind.png" height="21" width="21" title="Hive Mind"/>
     {{/if}}
     {{if is_hive_empire === false}}
-      <img src="../assets/icons/no.png"/><img src="../assets/icons/auth_hive_mind.png" height="21" width="21"/>
+      <img src="../assets/icons/no.png"/><img src="../assets/icons/auth_hive_mind.png" height="21" width="21" title="Hive Mind"/>
     {{/if}}
     {{if is_megacorp === true}}
-      <img src="../assets/icons/yes.png"/><img src="../assets/icons/auth_corporate.png" height="21" width="21"/>
+      <img src="../assets/icons/yes.png"/><img src="../assets/icons/auth_corporate.png" height="21" width="21" title="Megacorp"/>
     {{/if}}
     {{if is_megacorp === false}}
-      <img src="../assets/icons/no.png"/><img src="../assets/icons/auth_corporate" height="21" width="21"/>
+      <img src="../assets/icons/no.png"/><img src="../assets/icons/auth_corporate" height="21" width="21" title="Megacorp"/>
+    {{/if}}
+    {{if key && key.indexOf('repeatable') !== -1}}
+      <span>Repeatable</span>
     {{/if}}
     </p>
     <div class="node-status"></div>
