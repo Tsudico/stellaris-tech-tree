@@ -83,11 +83,11 @@
     {{if prerequisites.length > 1}}
         <div class="tooltip-header">Required Technologies</div>
         <div class="tooltip-content">
-        {{for prerequisites}}
-            <img class="left {{:}}" height="52" width="52" src="//:0" data-src="../assets/img/{{:}}.png"">
+        {{for prerequisites_names sort="name"}}
+            <img class="left {{:key}}" height="52" width="52" src="//:0" data-src="../assets/img/{{:key}}.png" title="{{:name}}">
         {{/for}}
         <div class="left">
-        {{for prerequisites_names}}
+        {{for prerequisites_names sort="name"}}
           <span class="node-status {{:key}}">{{:name}}</span><br/>
         {{/for}}
         </div>
